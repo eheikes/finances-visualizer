@@ -8,6 +8,7 @@
     "copy:index": "mkdirp dist && cp src/index.html dist/",
     "test": "run-s test:*",
     "lint": "standard --fix --verbose",
+    "publish": "github-pages -r eheikes/finances-visualizer -t $GITHUB_TOKEN ./dist",
     "start": "http-server dist",
     "test:e2e": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json jasmine test/e2e/*.spec.js",
     "test:unit": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json nyc jasmine test/unit/*.spec.js"
@@ -32,6 +33,7 @@
   "files": [],
   "devDependencies": {
     "del-cli": "^1.1.0",
+    "github-pages": "^3.0.2",
     "http-server": "^0.11.1",
     "jasmine": "^3.1.0",
     "jasmine-spec-reporter": "^4.2.1",
