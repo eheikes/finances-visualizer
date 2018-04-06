@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "description": "Visualize your finances",
   "scripts": {
+    "build": "run-s clean copy:index",
+    "clean": "del-cli dist",
+    "copy:index": "mkdirp dist && cp src/index.html dist/",
     "test": "run-s test:*",
     "lint": "standard --fix --verbose",
+    "start": "http-server dist",
     "test:e2e": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json jasmine test/e2e/*.spec.js",
     "test:unit": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json nyc jasmine test/unit/*.spec.js"
   },
@@ -27,8 +31,11 @@
   "homepage": "https://github.com/eheikes/finances-visualizer#readme",
   "files": [],
   "devDependencies": {
+    "del-cli": "^1.1.0",
+    "http-server": "^0.11.1",
     "jasmine": "^3.1.0",
     "jasmine-spec-reporter": "^4.2.1",
+    "mkdirp": "^0.5.1",
     "npm-run-all": "^4.1.2",
     "nyc": "^11.6.0",
     "standard": "^11.0.1"
