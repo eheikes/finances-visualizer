@@ -2,6 +2,8 @@
 
 > Visualize your finances
 
+**[Use it here](https://eheikes.github.io/finances-visualizer/).**
+
 ## Installation
 
 ```shell
