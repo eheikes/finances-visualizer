@@ -1,0 +1,65 @@
+{
+  "name": "vizfin",
+  "version": "0.1.0",
+  "description": "Visualize your finances",
+  "scripts": {
+    "test": "run-s test:*",
+    "lint": "standard --fix --verbose",
+    "test:e2e": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json jasmine test/e2e/*.spec.js",
+    "test:unit": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json nyc jasmine test/unit/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eheikes/finances-visualizer.git"
+  },
+  "keywords": [
+    "chart",
+    "finance",
+    "graph",
+    "quicken",
+    "visual"
+  ],
+  "author": "Eric Heikes <eheikes@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/eheikes/finances-visualizer/issues"
+  },
+  "homepage": "https://github.com/eheikes/finances-visualizer#readme",
+  "files": [],
+  "devDependencies": {
+    "jasmine": "^3.1.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "npm-run-all": "^4.1.2",
+    "nyc": "^11.6.0",
+    "standard": "^11.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "standard": {
+    "env": {
+      "jasmine": true,
+      "node": true
+    }
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": false,
+    "lines": 95,
+    "statements": 95,
+    "functions": 95,
+    "branches": 95,
+    "include": [
+      "*.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "cache": false,
+    "all": false,
+    "report-dir": "./coverage"
+  }
+}
