@@ -6,7 +6,18 @@ const distPath = 'dist'
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
-  entry: './src/index.js',
+  entry: './src/index.ts',
+  devtool: 'inline-source-map',
+  module: {
+    rules: [{
+      test: /\.ts$/,
+      use: 'ts-loader',
+      exclude: /node_modules/
+    }]
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
   plugins: [
     new CleanWebpackPlugin([distPath]),
     new HtmlWebpackPlugin({
