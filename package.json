@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack",
     "test": "run-s test:*",
-    "lint": "standard --fix --verbose",
+    "lint": "tslint --project . --fix",
     "publish": "github-pages -r eheikes/finances-visualizer -t $GITHUB_TOKEN ./dist",
     "start": "http-server dist",
     "test:e2e": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json jasmine test/e2e/*.spec.js",
@@ -42,8 +42,9 @@
     "nyc": "^11.6.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "standard": "^11.0.1",
     "ts-loader": "^4.2.0",
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.1",
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14"
