@@ -10,17 +10,18 @@ module.exports = {
   devtool: 'inline-source-map',
   module: {
     rules: [{
-      test: /\.ts$/,
+      test: /\.ts(x?)$/,
       use: 'ts-loader',
       exclude: /node_modules/
     }]
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js']
   },
   plugins: [
     new CleanWebpackPlugin([distPath]),
     new HtmlWebpackPlugin({
+      template: './src/index.ejs',
       title: 'VizFin'
     })
   ],
