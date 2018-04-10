@@ -4,10 +4,11 @@
   "description": "Visualize your finances",
   "scripts": {
     "build": "webpack",
-    "test": "run-s test:*",
+    "dev": "webpack --watch",
     "lint": "tslint --project . --fix",
     "publish": "github-pages -r eheikes/finances-visualizer -t $GITHUB_TOKEN ./dist",
     "start": "http-server dist",
+    "test": "run-s test:*",
     "test:e2e": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json jasmine test/e2e/*.spec.js",
     "test:unit": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json nyc jasmine test/unit/*.spec.js"
   },
@@ -33,6 +34,7 @@
     "@types/react": "^16.3.5",
     "@types/react-dom": "^16.0.4",
     "clean-webpack-plugin": "^0.1.19",
+    "gazeall": "^0.3.7",
     "github-pages": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
