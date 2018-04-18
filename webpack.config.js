@@ -6,7 +6,7 @@ const distPath = 'dist'
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
-  entry: './src/index.ts',
+  entry: './src/index.tsx',
   devtool: 'inline-source-map',
   module: {
     rules: [{
