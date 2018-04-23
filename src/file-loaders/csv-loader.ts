@@ -1,4 +1,5 @@
 import * as parse from 'csv-parse'
+import { promisify } from 'util'
 import { Transaction, TransactionStatus } from '../transaction'
 
 enum ColumnName {
@@ -44,16 +45,19 @@ const convertToTransaction = (row: Row): Transaction => {
 
 const removeFirstColumn = (row: Row) => row.slice(1)
 
-export const loadCsv = (csv: string) => {
-  parse(csv, {
-    skip_empty_lines: true
-  }, (err, results) => {
-    const cleanedUp = results
-      .map(removeFirstColumn)
-      .filter(isRecord)
-      .filter(isNotOpeningBalance)
-      .slice(1) // ignore header row
-      .map(convertToTransaction)
-    console.log(cleanedUp[0])
+export const loadCsv = (csv: string): Promise<Transaction[]> => {
+  return new Promise((resolve, reject) => {
+    parse(csv, {
+      skip_empty_lines: true
+    }, (err, results) => {
+      if (err) { return reject(err) }
+      const cleanedUp = results
+        .map(removeFirstColumn)
+        .filter(isRecord)
+        .filter(isNotOpeningBalance)
+        .slice(1) // ignore header row
+        .map(convertToTransaction)
+      resolve(cleanedUp)
+    })
   })
 }
