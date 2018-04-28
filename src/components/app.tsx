@@ -3,11 +3,11 @@ import { Account } from '../account'
 import { AccountList } from './account-list'
 import { FileUpload } from './file-upload'
 
-interface MainComponentProps {
+interface AppComponentProps {
   accounts: Account[]
 }
 
-export const MainComponent = (props: MainComponentProps): JSX.Element => {
+export const AppComponent = (props: AppComponentProps): JSX.Element => {
   const el = <main>
     <h1>VizFin</h1>
     <AccountList accounts={props.accounts} />

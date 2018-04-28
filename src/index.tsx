@@ -5,7 +5,7 @@ import { Account } from './account'
 import { EventType } from './event'
 import { Transaction } from './transaction'
 import { handleFileUpload } from './components/file-upload'
-import { MainComponent } from './components/main'
+import { AppComponent } from './components/app'
 
 // App stores.
 let accounts: Account[] = []
@@ -19,7 +19,7 @@ const getAccounts = (transactions: Transaction[]) => {
 
 const render = () => {
   ReactDOM.render(
-    <MainComponent accounts={accounts} />,
+    <AppComponent accounts={accounts} />,
     document.getElementById('app')
   )
 }
