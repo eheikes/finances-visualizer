@@ -3,8 +3,8 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Account } from './account'
 import { EventType } from './event'
+import { readFile } from './file'
 import { Transaction } from './transaction'
-import { handleFileUpload } from './components/file-upload'
 import { AppComponent } from './components/app'
 
 // App stores.
@@ -15,6 +15,11 @@ const getAccounts = (transactions: Transaction[]) => {
   const accountNames = transactions.map(transaction => transaction.account)
   const uniqueAccounts = new Set(accountNames)
   return Array.from(uniqueAccounts).map(name => ({ name }))
+}
+
+const handleFileUpload = (e: CustomEvent): Promise<Transaction[]> => {
+  e.stopPropagation()
+  return readFile(e.detail)
 }
 
 const render = () => {
