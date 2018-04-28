@@ -29,6 +29,11 @@ const render = () => {
   )
 }
 
+// I have no idea why TS doesn't allow CustomEvents in event listeners...
+interface EventListener {
+  (evt: CustomEvent): void
+}
+
 // I can't figure out how to make TypeScript treat the 2nd argument as EventListener and not EventListenerObject.
 window.addEventListener(EventType.FileUpload, {
   handleEvent: (e: CustomEvent) => {

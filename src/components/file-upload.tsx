@@ -1,15 +1,10 @@
 import * as React from 'react'
 import { EventType } from '../event'
 
-// I have no idea why TS doesn't allow CustomEvents in event listeners...
-interface EventListener {
-  (evt: CustomEvent): void
-}
-
 interface FileUploadProps {}
 
 export const FileUpload = (props: FileUploadProps): JSX.Element => {
-  function fireUploadEvent(e: React.ChangeEvent<HTMLInputElement>) {
+  const fireUploadEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     if (e.target.files) {
       for (let i = 0; i < e.target.files.length; i++) {

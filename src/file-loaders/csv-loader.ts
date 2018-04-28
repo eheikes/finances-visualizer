@@ -45,19 +45,14 @@ const convertToTransaction = (row: Row): Transaction => {
 
 const removeFirstColumn = (row: Row) => row.slice(1)
 
-export const loadCsv = (csv: string): Promise<Transaction[]> => {
-  return new Promise((resolve, reject) => {
-    parse(csv, {
-      skip_empty_lines: true
-    }, (err, results) => {
-      if (err) { return reject(err) }
-      const cleanedUp = results
-        .map(removeFirstColumn)
-        .filter(isRecord)
-        .filter(isNotOpeningBalance)
-        .slice(1) // ignore header row
-        .map(convertToTransaction)
-      resolve(cleanedUp)
-    })
+export const loadCsv = async (csv: string): Promise<Transaction[]> => {
+  const results = await promisify<string, parse.Options, Row[]>(parse)(csv, {
+    skip_empty_lines: true
   })
+  return results
+    .map(removeFirstColumn)
+    .filter(isRecord)
+    .filter(isNotOpeningBalance)
+    .slice(1) // ignore header row
+    .map(convertToTransaction)
 }
