@@ -30,6 +30,7 @@ const render = () => {
 }
 
 // I have no idea why TS doesn't allow CustomEvents in event listeners...
+// tslint:disable-next-line:no-unused-variable
 interface EventListener {
   (evt: CustomEvent): void
 }
@@ -42,6 +43,8 @@ window.addEventListener(EventType.FileUpload, {
       console.log(transactions.length, 'transactions')
       accounts = getAccounts(transactions)
       render()
+    }).catch(err => {
+      console.error('Error reading file:', err)
     })
   }
 })

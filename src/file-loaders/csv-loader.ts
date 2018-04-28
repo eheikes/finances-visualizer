@@ -11,7 +11,7 @@ enum ColumnName {
   Category = 5,
   Tag = 6,
   Status = 7,
-  Amount = 8,
+  Amount = 8
 }
 
 type Row = string[]
@@ -19,13 +19,13 @@ type Row = string[]
 const separator = '||'
 
 const isNotOpeningBalance = (row: Row) => row[ColumnName.Payee] !== 'Opening Balance'
-const isRecord = (row: Row) => row[ColumnName.Date] != '' && row[ColumnName.Account] != ''
+const isRecord = (row: Row) => row[ColumnName.Date] !== '' && row[ColumnName.Account] !== ''
 
 const buildId = (row: Row) => [
   row[ColumnName.Date],
   row[ColumnName.Account],
   row[ColumnName.Memo],
-  row[ColumnName.Amount],
+  row[ColumnName.Amount]
 ].join(separator)
 
 const convertToTransaction = (row: Row): Transaction => {
@@ -39,7 +39,7 @@ const convertToTransaction = (row: Row): Transaction => {
     status: row[ColumnName.Status] === TransactionStatus.Reconciled ?
       TransactionStatus.Reconciled :
       TransactionStatus.Cleared,
-    amount: parseFloat(row[ColumnName.Amount]),
+    amount: parseFloat(row[ColumnName.Amount])
   }
 }
 

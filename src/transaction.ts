@@ -1,6 +1,6 @@
 export enum TransactionStatus {
   Cleared = 'c',
-  Reconciled = 'R',
+  Reconciled = 'R'
 }
 
 export interface Transaction {

@@ -17,5 +17,5 @@ export const FileUpload = (props: FileUploadProps): JSX.Element => {
     e.target.value = '' // reset
   }
 
-  return <input type="file" multiple accept=".qif, .csv, .xlsx" onChange={fireUploadEvent} />
+  return <input type='file' multiple accept='.qif, .csv, .xlsx' onChange={fireUploadEvent} />
 }
