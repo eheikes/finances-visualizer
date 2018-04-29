@@ -1,5 +1,5 @@
 import * as parse from 'csv-parse'
-import { promisify } from 'util'
+import * as promisify  from 'pify'
 import { Transaction, TransactionStatus } from '../transaction'
 
 enum ColumnName {
@@ -46,7 +46,7 @@ const convertToTransaction = (row: Row): Transaction => {
 const removeFirstColumn = (row: Row) => row.slice(1)
 
 export const loadCsv = async (csv: string): Promise<Transaction[]> => {
-  const results = await promisify<string, parse.Options, Row[]>(parse)(csv, {
+  const results: Row[] = await promisify(parse)(csv, {
     skip_empty_lines: true
   })
   return results
