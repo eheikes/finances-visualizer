@@ -17,9 +17,9 @@ const getFileType = (file: File): FileType => {
 
   // Check the file extension.
   const extension = extname(file.name)
-  if (extension === 'csv') { return FileType.Csv }
-  if (extension === 'qif') { return FileType.Qif }
-  if (extension === 'xlsx') { return FileType.Xlsx }
+  if (extension === '.csv') { return FileType.Csv }
+  if (extension === '.qif') { return FileType.Qif }
+  if (extension === '.xlsx') { return FileType.Xlsx }
 
   // No idea; give up.
   return FileType.Unknown
@@ -29,7 +29,7 @@ export const readFile = (file: File): Promise<Transaction[]> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
     console.log(`Reading file ${file.name} (${file.type}, ${file.size} bytes)`)
-    reader.onerror = (err) => {
+    reader.onerror = /* istanbul ignore next */ (err) => {
       console.error(`Error reading ${file.name}`, reader.error)
       reject(err)
     }
