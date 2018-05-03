@@ -3,7 +3,7 @@ import { Account } from '../account'
 import { AccountList } from './account-list'
 import { FileUpload } from './file-upload'
 
-interface AppComponentProps {
+export interface AppComponentProps {
   accounts: Account[]
 }
 

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Account } from '../account'
 
-interface AccountListProps {
+export interface AccountListProps {
   accounts: Account[]
 }
 

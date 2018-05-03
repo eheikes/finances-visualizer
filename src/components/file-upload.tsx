@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { EventType } from '../event'
 
-interface FileUploadProps {}
+export interface FileUploadProps {}
 
 export const FileUpload = (props: FileUploadProps): JSX.Element => {
   const fireUploadEvent = (e: React.ChangeEvent<HTMLInputElement>) => {

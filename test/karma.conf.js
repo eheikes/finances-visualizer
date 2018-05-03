@@ -4,12 +4,14 @@ module.exports = config => {
     basePath: '..',
     files: [
       'src/**/*.ts',
+      'src/**/*.tsx',
       'test/fixtures/*.ts',
       'test/helpers/*.ts',
       'test/unit/**/*.ts'
     ],
     preprocessors: {
-      '**/*.ts': 'karma-typescript'
+      '**/*.ts': 'karma-typescript',
+      '**/*.tsx': 'karma-typescript'
     },
     karmaTypescriptConfig: {
       tsconfig: 'tsconfig.json',
@@ -30,6 +32,7 @@ module.exports = config => {
       }
     },
     reporters: ['spec', 'karma-typescript'],
+    // logLevel: config.LOG_DEBUG,
     browsers: ['ChromeHeadlessNoSandbox'],
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
