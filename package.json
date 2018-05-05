@@ -57,6 +57,7 @@
     "pify": "^3.0.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "setimmediate": "^1.0.5",
     "ts-loader": "^4.2.0",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",

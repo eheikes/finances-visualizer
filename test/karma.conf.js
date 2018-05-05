@@ -3,6 +3,7 @@ module.exports = config => {
     frameworks: ['jasmine', 'karma-typescript'],
     basePath: '..',
     files: [
+      'node_modules/setimmediate/setImmediate.js', // csv-parse requires a setImmediate() implementation
       'src/**/*.ts',
       'src/**/*.tsx',
       'test/fixtures/*.ts',
