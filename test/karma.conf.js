@@ -10,6 +10,9 @@ module.exports = config => {
       'test/helpers/*.ts',
       'test/unit/**/*.ts'
     ],
+    exclude: [
+      'src/index.ts'
+    ],
     preprocessors: {
       '**/*.ts': 'karma-typescript',
       '**/*.tsx': 'karma-typescript'

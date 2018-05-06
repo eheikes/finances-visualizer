@@ -2,7 +2,6 @@ import { unionBy } from 'lodash'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Account } from './account'
-import { EventType } from './event'
 import { readFile } from './file'
 import { Transaction } from './transaction'
 import { AppComponent } from './components/app'
@@ -17,16 +16,20 @@ const getAccounts = (transactions: Transaction[]) => {
   return Array.from(uniqueAccounts).map(name => ({ name }))
 }
 
-const handleFileUpload = (e: CustomEvent): Promise<Transaction[]> => {
-  e.stopPropagation()
-  return readFile(e.detail)
+export const render = (): Promise<void> => {
+  return new Promise((resolve) => {
+    ReactDOM.render(
+      <AppComponent accounts={ accounts } />,
+      document.getElementById('app'),
+      resolve
+    )
+  })
 }
 
-const render = () => {
-  ReactDOM.render(
-    <AppComponent accounts={accounts} />,
-    document.getElementById('app')
-  )
+// Just a helper for testing.
+export const reset = () => {
+  accounts = []
+  transactions = []
 }
 
 // I have no idea why TS doesn't allow CustomEvents in event listeners...
@@ -36,17 +39,16 @@ interface EventListener {
 }
 
 // I can't figure out how to make TypeScript treat the 2nd argument as EventListener and not EventListenerObject.
-window.addEventListener(EventType.FileUpload, {
-  handleEvent: (e: CustomEvent) => {
-    handleFileUpload(e).then(newTransactions => {
+export const handleFileUpload = ({
+  handleEvent: (e: CustomEvent): Promise<void> => {
+    e.stopPropagation()
+    return readFile(e.detail).then(newTransactions => {
       transactions = unionBy(transactions, newTransactions, 'id')
       console.log(transactions.length, 'transactions')
       accounts = getAccounts(transactions)
-      render()
+      return render()
     }).catch(err => {
       console.error('Error reading file:', err)
     })
   }
 })
-
-render()
