@@ -19,7 +19,7 @@ const getAccounts = (transactions: Transaction[]) => {
 export const render = (): Promise<void> => {
   return new Promise((resolve) => {
     ReactDOM.render(
-      <AppComponent accounts={ accounts } />,
+      <AppComponent accounts={accounts} transactions={transactions} />,
       document.getElementById('app'),
       resolve
     )
