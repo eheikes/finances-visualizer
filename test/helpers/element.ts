@@ -1,5 +1,5 @@
 export const getChildren = (el: JSX.Element): JSX.Element[] => {
-  return el.props.children
+  return el.props.children || []
 }
 
 export const getChildrenTypes = (el: JSX.Element): (string | Function)[] => {
