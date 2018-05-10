@@ -1,5 +1,3 @@
-import { TransactionStatus } from '../../src/transaction'
-
 export const toBeTransaction: jasmine.CustomMatcherFactory = () => {
   return {
     compare: (actual: any) => {

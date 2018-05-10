@@ -5,7 +5,7 @@ import { toBeTransaction } from '../../helpers/matchers'
 
 describe('CSV loader', () => {
   beforeEach(() => {
-    jasmine.addMatchers({ toBeTransaction });
+    jasmine.addMatchers({ toBeTransaction })
   })
 
   describe('when a parsing error occurs', () => {

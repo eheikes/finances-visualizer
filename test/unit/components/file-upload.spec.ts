@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FileUpload, FileUploadProps } from '../../../src/components/file-upload'
+import { FileUpload } from '../../../src/components/file-upload'
 import { EventType } from '../../../src/event'
 
 describe('FileUpload component', () => {
@@ -34,7 +34,7 @@ describe('FileUpload component', () => {
 
     const createEvent = (files: File[] | null = null): React.ChangeEvent<HTMLInputElement> => {
       event = {
-        preventDefault: () => {},
+        preventDefault: () => {}, // tslint:disable-line:no-empty
         target: {
           dispatchEvent: (e: Event) => true,
           files: files,

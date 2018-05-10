@@ -4,7 +4,7 @@ import { Transaction } from '../../src/transaction'
 import { sampleTransactions } from '../fixtures/transactions'
 
 interface ReaderTests {
-  [name:string]: File
+  [name: string]: File
 }
 
 describe('readFile()', () => {

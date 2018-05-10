@@ -1,4 +1,4 @@
-import { AccountList, AccountListProps } from '../../../src/components/account-list'
+import { AccountList } from '../../../src/components/account-list'
 import { sampleAccounts } from '../../fixtures/accounts'
 import { getChild, getContents } from '../../helpers/element'
 

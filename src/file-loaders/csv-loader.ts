@@ -1,5 +1,5 @@
 import * as parse from 'csv-parse'
-import * as promisify  from 'pify'
+import * as promisify from 'pify'
 import { Transaction, TransactionStatus } from '../transaction'
 
 enum ColumnName {

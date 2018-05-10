@@ -1,9 +1,9 @@
-import { AppComponent, AppComponentProps } from '../../../src/components/app'
-import { AccountList } from '../../../src/components/account-list';
+import { AppComponent } from '../../../src/components/app'
+import { AccountList } from '../../../src/components/account-list'
 import { FileUpload } from '../../../src/components/file-upload'
 import { IncomeVsSpendingChart } from '../../../src/components/income-vs-spending-chart'
 import { sampleAccounts } from '../../fixtures/accounts'
-import { getChildrenTypes, findChild } from '../../helpers/element';
+import { getChildrenTypes, findChild } from '../../helpers/element'
 
 describe('App component', () => {
   let el: JSX.Element

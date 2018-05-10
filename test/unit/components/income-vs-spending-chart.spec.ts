@@ -62,7 +62,7 @@ describe('IncomeVsSpendingChart component', () => {
       expect(series[0].data).toEqual(jasmine.any(Array))
       const dataPoints = series[0].data as number[]
       expect(dataPoints.every((dataPoint) => {
-        return typeof dataPoint === 'number'
+        return typeof dataPoint === 'number' // tslint:disable-line:strict-type-predicates
       })).toBe(true)
     })
 
