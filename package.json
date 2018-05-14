@@ -10,7 +10,8 @@
     "start": "http-server dist",
     "test": "run-s test:*",
     "test:e2e": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json jasmine-ts \"test/e2e/*.spec.ts\"",
-    "test:unit": "NODE_ENV=test karma start test/karma.conf.js --single-run"
+    "test:unit": "NODE_ENV=test karma start test/karma.conf.js --single-run",
+    "test:unit:watch": "NODE_ENV=test karma start test/karma.conf.js --auto-watch"
   },
   "repository": {
     "type": "git",
