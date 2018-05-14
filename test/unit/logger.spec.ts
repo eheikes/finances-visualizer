@@ -25,6 +25,7 @@ describe('logger', () => {
     loglevelMethods.forEach(method => {
       loglevelSpy[method].calls.reset()
     })
+    spyOn(window, 'alert')
   })
 
   describe('write()', () => {
@@ -70,9 +71,16 @@ describe('logger', () => {
   })
 
   describe('critical()', () => {
-    it('should write the arguments to the error logger', () => {
+    beforeEach(() => {
       log.critical('this', 'is', 'a', 'test')
+    })
+
+    it('should write the arguments to the error logger', () => {
       expect(loglevelSpy.error).toHaveBeenCalledWith('this', 'is', 'a', 'test')
+    })
+
+    it('should display an error popup', () => {
+      expect(window.alert).toHaveBeenCalled()
     })
   })
 
@@ -84,9 +92,16 @@ describe('logger', () => {
   })
 
   describe('error()', () => {
-    it('should write the arguments to the error logger', () => {
+    beforeEach(() => {
       log.error('this', 'is', 'a', 'test')
+    })
+
+    it('should write the arguments to the error logger', () => {
       expect(loglevelSpy.error).toHaveBeenCalledWith('this', 'is', 'a', 'test')
+    })
+
+    it('should display an error popup', () => {
+      expect(window.alert).toHaveBeenCalled()
     })
   })
 

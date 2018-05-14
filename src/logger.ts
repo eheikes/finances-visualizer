@@ -22,6 +22,7 @@ const write = (type: LogLevel, ...messages: any[]) => {
     loglevel.warn(...messages)
   } else {
     loglevel.error(...messages)
+    window.alert(messages.join(' '))
   }
 }
 
