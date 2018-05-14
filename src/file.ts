@@ -1,5 +1,6 @@
 import { extname } from 'path'
 import { loadCsv } from './file-loaders/csv-loader'
+import { log } from './logger'
 import { Transaction } from './transaction'
 
 enum FileType {
@@ -28,9 +29,9 @@ const getFileType = (file: File): FileType => {
 export const readFile = (file: File): Promise<Transaction[]> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
-    console.log(`Reading file ${file.name} (${file.type}, ${file.size} bytes)`)
+    log.info(`Reading file ${file.name} (${file.type}, ${file.size} bytes)`)
     reader.onerror = /* istanbul ignore next */ (err) => {
-      console.error(`Error reading ${file.name}`, reader.error)
+      log.error(`Error reading ${file.name}`, reader.error)
       reject(err)
     }
     reader.onload = () => {
@@ -38,7 +39,7 @@ export const readFile = (file: File): Promise<Transaction[]> => {
       if (type === FileType.Csv) {
         loadCsv(reader.result).then(transactions => resolve(transactions)).catch(err => reject(err))
       } else {
-        console.error(`Error: Unsupported file type for ${file.name}`)
+        log.error(`Error: Unsupported file type for ${file.name}`)
         resolve([])
       }
     }

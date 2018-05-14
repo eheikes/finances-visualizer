@@ -3,6 +3,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Account } from './account'
 import { readFile } from './file'
+import { log } from './logger'
 import { Transaction } from './transaction'
 import { AppComponent } from './components/app'
 
@@ -44,11 +45,11 @@ export const handleFileUpload = ({
     e.stopPropagation()
     return readFile(e.detail).then(newTransactions => {
       transactions = unionBy(transactions, newTransactions, 'id')
-      console.log(transactions.length, 'transactions')
+      log.info(`${transactions.length} transactions`)
       accounts = getAccounts(transactions)
       return render()
     }).catch(err => {
-      console.error('Error reading file:', err)
+      log.error('Error reading file', err)
     })
   }
 })
