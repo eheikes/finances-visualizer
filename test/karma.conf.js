@@ -19,6 +19,9 @@ module.exports = config => {
     },
     karmaTypescriptConfig: {
       tsconfig: 'tsconfig.json',
+      bundlerOptions: {
+        // entrypoints: /date\.spec\.ts$/ // run only certain test files
+      },
       coverageOptions: {
         threshold: {
           global: {
