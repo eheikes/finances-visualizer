@@ -32,6 +32,10 @@ describe('CSV loader', () => {
       })
     })
 
+    it('should generate a SHA-1 hash for the ID', () => {
+      expect(results[0].id).toMatch(/^[a-f0-9]{40}$/)
+    })
+
     it('should skip empty lines, non-transaction rows, and the opening balance row', () => {
       expect(results.length).toBe(numTransactions)
     })

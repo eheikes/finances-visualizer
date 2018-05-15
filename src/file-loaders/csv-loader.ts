@@ -1,5 +1,6 @@
 import * as parse from 'csv-parse'
 import * as promisify from 'pify'
+import sha1 = require('sha1')
 import { Transaction, TransactionStatus } from '../transaction'
 
 enum ColumnName {
@@ -21,12 +22,12 @@ const separator = '||'
 const isNotOpeningBalance = (row: Row) => row[ColumnName.Payee] !== 'Opening Balance'
 const isRecord = (row: Row) => row[ColumnName.Date] !== '' && row[ColumnName.Account] !== ''
 
-const buildId = (row: Row) => [
+const buildId = (row: Row): string => sha1([
   row[ColumnName.Date],
   row[ColumnName.Account],
   row[ColumnName.Memo],
   row[ColumnName.Amount]
-].join(separator)
+].join(separator)) as string
 
 const convertToTransaction = (row: Row): Transaction => {
   return {
