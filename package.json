@@ -1,5 +1,5 @@
 {
-  "name": "vizfin",
+  "name": "@eheikes/finances-visualizer",
   "version": "0.1.0",
   "description": "Visualize your finances",
   "scripts": {
