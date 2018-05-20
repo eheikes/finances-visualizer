@@ -39,7 +39,8 @@ interface EventListener {
   (evt: CustomEvent): void
 }
 
-// I can't figure out how to make TypeScript treat the 2nd argument as EventListener and not EventListenerObject.
+// I can't figure out how to make TypeScript treat the 2nd argument
+//   to addEventListener() as EventListener and not EventListenerObject.
 export const handleFileUpload = ({
   handleEvent: (e: CustomEvent): Promise<void> => {
     e.stopPropagation()
