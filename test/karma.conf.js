@@ -31,7 +31,7 @@ module.exports = config => {
             lines: 95
           }
         },
-        exclude: [/^test\//],
+        exclude: [/^test[\/\\]/],
       },
       reports: {
         html: 'coverage',

@@ -9,9 +9,9 @@
     "publish": "github-pages -r eheikes/finances-visualizer -t $GITHUB_TOKEN ./dist",
     "start": "http-server dist",
     "test": "run-s test:*",
-    "test:e2e": "NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json jasmine-ts \"test/e2e/*.spec.ts\"",
-    "test:unit": "NODE_ENV=test karma start test/karma.conf.js --single-run",
-    "test:unit:watch": "NODE_ENV=test karma start test/karma.conf.js --auto-watch"
+    "test:e2e": "cross-env NODE_ENV=test JASMINE_CONFIG_PATH=./test/jasmine.json jasmine-ts \"test/e2e/*.spec.ts\"",
+    "test:unit": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
+    "test:unit:watch": "cross-env NODE_ENV=test karma start test/karma.conf.js --auto-watch"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "@types/react-dom": "^16.0.4",
     "@types/sha1": "^1.1.1",
     "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.1.5",
     "csv-parse": "^2.2.0",
     "gazeall": "^0.3.7",
     "github-pages": "^3.0.2",
