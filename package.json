@@ -30,7 +30,9 @@
     "url": "https://github.com/eheikes/finances-visualizer/issues"
   },
   "homepage": "https://github.com/eheikes/finances-visualizer#readme",
-  "files": [],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/csv-parse": "^1.1.11",
     "@types/highcharts": "^5.0.22",
