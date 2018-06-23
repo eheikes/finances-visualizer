@@ -6,7 +6,10 @@ export const sampleTransactions: Transaction[] = [{
   account: 'Checking',
   payee: 'Fast Food Co.',
   memo: 'FAST FOOD CO',
-  categories: ['Restaurants:Fast Food'],
+  categories: [{
+    category: 'Restaurants:Fast Food',
+    amount: 7.85
+  }],
   status: TransactionStatus.Reconciled,
   amount: 7.85
 }, {
@@ -15,7 +18,10 @@ export const sampleTransactions: Transaction[] = [{
   account: 'Checking',
   payee: 'Clothing Store',
   memo: 'CLOTHING STORE',
-  categories: ['Shopping:Clothes'],
+  categories: [{
+    category: 'Shopping:Clothes',
+    amount: 112.04
+  }],
   status: TransactionStatus.Reconciled,
   amount: 112.04
 }, {
@@ -24,7 +30,10 @@ export const sampleTransactions: Transaction[] = [{
   account: 'Checking',
   payee: 'Grocery Store',
   memo: 'GROCERY STORE',
-  categories: ['Food:Groceries'],
+  categories: [{
+    category: 'Food:Groceries',
+    amount: 80.08
+  }],
   status: TransactionStatus.Cleared,
   amount: 80.08
 }]

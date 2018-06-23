@@ -15,12 +15,21 @@ enum ColumnName {
   Amount = 8
 }
 
+interface TransactionContinuation {
+  id: string
+  category: string
+  amount: number
+}
+
 type Row = string[]
 
+const continuationId = 'CONTINUATION'
 const separator = '||'
 
 const isNotOpeningBalance = (row: Row) => row[ColumnName.Payee] !== 'Opening Balance'
-const isRecord = (row: Row) => row[ColumnName.Date] !== '' && row[ColumnName.Account] !== ''
+const isRecord = (row: Row) =>
+  (row[ColumnName.Date] !== '' && row[ColumnName.Account] !== '') ||
+  row[ColumnName.Category] !== ''
 
 const buildId = (row: Row): string => sha1([
   row[ColumnName.Date],
@@ -29,14 +38,43 @@ const buildId = (row: Row): string => sha1([
   row[ColumnName.Amount]
 ].join(separator)) as string
 
-const convertToTransaction = (row: Row): Transaction => {
+const combineContinuations = (soFar: Transaction[], val: Transaction | TransactionContinuation): Transaction[] => {
+  // If a continuation, add it to the previous record.
+  // Otherwise just push it back into the array.
+  if (val.id === continuationId) {
+    const continuation = val as TransactionContinuation
+    const prevRecord = soFar[soFar.length - 1]
+    if (soFar.length > 0) {
+      prevRecord.categories.push({
+        category: continuation.category,
+        amount: continuation.amount
+      })
+      prevRecord.amount += continuation.amount
+    }
+  } else {
+    soFar.push(val as Transaction)
+  }
+  return soFar
+}
+
+const convertToTransaction = (row: Row): Transaction | TransactionContinuation => {
+  if (row[ColumnName.Date] === '') { // is a continuation (split transaction)
+    return {
+      id: continuationId,
+      category: row[ColumnName.Category],
+      amount: parseFloat(row[ColumnName.Amount])
+    }
+  }
   return {
     id: buildId(row),
     date: new Date(row[ColumnName.Date]),
     account: row[ColumnName.Account],
     payee: row[ColumnName.Payee],
     memo: row[ColumnName.Memo],
-    categories: [row[ColumnName.Category]],
+    categories: [{
+      category: row[ColumnName.Category],
+      amount: parseFloat(row[ColumnName.Amount])
+    }],
     status: row[ColumnName.Status] === TransactionStatus.Reconciled ?
       TransactionStatus.Reconciled :
       TransactionStatus.Cleared,
@@ -56,4 +94,5 @@ export const loadCsv = async (csv: string): Promise<Transaction[]> => {
     .filter(isNotOpeningBalance)
     .slice(1) // ignore header row
     .map(convertToTransaction)
+    .reduce(combineContinuations, [])
 }
