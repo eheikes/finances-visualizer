@@ -42,7 +42,7 @@ describe('CSV loader', () => {
       expect(results[0].id).toMatch(/^[a-f0-9]{40}$/)
     })
 
-    it('should skip empty lines, non-transaction rows, and the opening balance row', () => {
+    it('should skip empty lines and non-transaction rows', () => {
       expect(results.length).toBe(numTransactions)
     })
 

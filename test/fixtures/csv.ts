@@ -1,10 +1,7 @@
-export const numTransactions = 5
+export const numTransactions = 6
 export const accountName = 'Joint Checking'
 
-interface CategoryInfo {
-
-}
-export const splitIndex = 3 // index of the split-category transaction
+export const splitIndex = 4 // index of the split-category transaction
 export const splitCategories: [string, number][] = [
   ['Food & Dining:Groceries', -42.50],
   ['Home:Furnishings', -19.99],

@@ -26,7 +26,6 @@ type Row = string[]
 const continuationId = 'CONTINUATION'
 const separator = '||'
 
-const isNotOpeningBalance = (row: Row) => row[ColumnName.Payee] !== 'Opening Balance'
 const isRecord = (row: Row) =>
   (row[ColumnName.Date] !== '' && row[ColumnName.Account] !== '') ||
   row[ColumnName.Category] !== ''
@@ -91,7 +90,6 @@ export const loadCsv = async (csv: string): Promise<Transaction[]> => {
   return results
     .map(removeFirstColumn)
     .filter(isRecord)
-    .filter(isNotOpeningBalance)
     .slice(1) // ignore header row
     .map(convertToTransaction)
     .reduce(combineContinuations, [])
