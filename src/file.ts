@@ -37,7 +37,7 @@ export const readFile = (file: File): Promise<Transaction[]> => {
     reader.onload = () => {
       const type = getFileType(file)
       if (type === FileType.Csv) {
-        loadCsv(reader.result).then(transactions => resolve(transactions)).catch(err => reject(err))
+        loadCsv(reader.result as string).then(transactions => resolve(transactions)).catch(err => reject(err))
       } else {
         log.error(`Error: Unsupported file type for ${file.name}`)
         resolve([])
