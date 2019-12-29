@@ -21,6 +21,12 @@ module.exports = config => {
       tsconfig: 'tsconfig.json',
       bundlerOptions: {
         // entrypoints: /date\.spec\.ts$/ // run only certain test files
+        acornOptions: {
+          ecmaVersion: 8,
+        },
+        transforms: [
+          require('karma-typescript-es6-transform')()
+        ]
       },
       coverageOptions: {
         threshold: {
